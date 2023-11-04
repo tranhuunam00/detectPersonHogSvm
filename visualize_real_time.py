@@ -13,10 +13,10 @@ model = joblib.load('models/models.dat')
 
 # real time person detection 
 
-url = 'https://youtu.be/NyLF8nHIquM'
-vPafy = pafy.new(url)
-play = vPafy.getbest(preftype="mp4")
-cap = cv2.VideoCapture(play.url)
+# url = 'https://youtu.be/NyLF8nHIquM'
+# vPafy = pafy.new(url)
+# play = vPafy.getbest(preftype="mp4")
+cap = cv2.VideoCapture(0)
 
 while True:
     ret,frame = cap.read()
