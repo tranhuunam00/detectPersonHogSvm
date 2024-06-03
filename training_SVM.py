@@ -7,6 +7,9 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn import svm, metrics
 import numpy as np 
 from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 train_data = []
 train_labels = []
@@ -43,3 +46,20 @@ print('Training...... Support Vector Machine')
 model.fit(train_data,train_labels)
 joblib.dump(model, 'models/models.dat')
 print('Model saved : {}'.format('models/models.dat'))
+
+predictions = model.predict(train_data)
+
+# Calculate the confusion matrix
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+cm = confusion_matrix(train_labels, predictions)
+
+# Plot the confusion matrix
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
